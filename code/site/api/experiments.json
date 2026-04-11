@@ -29,11 +29,11 @@
       "subtitle": "在高对比度文字遮挡下，rank-6 人像的 RPCA 分离效果。",
       "story": "将干净人像压缩到 rank-6，然后叠加 MASK/RPCA 文字。RPCA 将文字遮挡分离到稀疏项 S 中，同时保留人像主体轮廓。",
       "images": {
-        "overview": "/results/portrait_text_overview.png",
-        "clean": "/assets/portrait_text_clean.png",
-        "observed": "/assets/portrait_text_observed.png",
-        "recovered": "/assets/portrait_text_recovered.png",
-        "sparse": "/assets/portrait_text_sparse.png"
+        "overview": "results/portrait_text_overview.png",
+        "clean": "assets/portrait_text_clean.png",
+        "observed": "assets/portrait_text_observed.png",
+        "recovered": "assets/portrait_text_recovered.png",
+        "sparse": "assets/portrait_text_sparse.png"
       },
       "metrics": {
         "psnr": 29.900233468100996,
@@ -51,11 +51,11 @@
       "subtitle": "人像底图上挖去一个矩形块，RPCA 尝试恢复缺失区域。",
       "story": "一个亮色矩形块替换了人像的一部分。RPCA 将该块视为稀疏异常，尝试恢复底层结构。",
       "images": {
-        "overview": "/results/portrait_block_overview.png",
-        "clean": "/assets/portrait_block_clean.png",
-        "observed": "/assets/portrait_block_observed.png",
-        "recovered": "/assets/portrait_block_recovered.png",
-        "sparse": "/assets/portrait_block_sparse.png"
+        "overview": "results/portrait_block_overview.png",
+        "clean": "assets/portrait_block_clean.png",
+        "observed": "assets/portrait_block_observed.png",
+        "recovered": "assets/portrait_block_recovered.png",
+        "sparse": "assets/portrait_block_sparse.png"
       },
       "metrics": {
         "psnr": 19.72033157546926,
@@ -73,12 +73,12 @@
       "subtitle": "10% 椒盐噪声 + rank-6 人像，并与中值滤波对比。",
       "story": "椒盐噪声是典型的稀疏异常，每个噪点只影响单个像素。RPCA 将脉冲噪声分离到稀疏项，不触碰干净像素，效果远超 3x3 中值滤波。",
       "images": {
-        "overview": "/results/portrait_salt_overview.png",
-        "comparison": "/results/saltpepper_vs_median.png",
-        "clean": "/assets/portrait_salt_clean.png",
-        "observed": "/assets/portrait_salt_observed.png",
-        "recovered": "/assets/portrait_salt_recovered.png",
-        "sparse": "/assets/portrait_salt_sparse.png"
+        "overview": "results/portrait_salt_overview.png",
+        "comparison": "results/saltpepper_vs_median.png",
+        "clean": "assets/portrait_salt_clean.png",
+        "observed": "assets/portrait_salt_observed.png",
+        "recovered": "assets/portrait_salt_recovered.png",
+        "sparse": "assets/portrait_salt_sparse.png"
       },
       "metrics": {
         "psnr": 54.50076872503331,
@@ -96,11 +96,11 @@
       "subtitle": "在 rank-4 合成纹理上叠加文字和划痕。",
       "story": "光滑低秩纹理上叠加了文字和划痕线。由于纹理严格低秩，RPCA 能精确恢复原始纹理。",
       "images": {
-        "overview": "/results/texture_text_overview.png",
-        "clean": "/assets/texture_text_clean.png",
-        "observed": "/assets/texture_text_observed.png",
-        "recovered": "/assets/texture_text_recovered.png",
-        "sparse": "/assets/texture_text_sparse.png"
+        "overview": "results/texture_text_overview.png",
+        "clean": "assets/texture_text_clean.png",
+        "observed": "assets/texture_text_observed.png",
+        "recovered": "assets/texture_text_recovered.png",
+        "sparse": "assets/texture_text_sparse.png"
       },
       "metrics": {
         "psnr": 43.48307606283758,
@@ -118,11 +118,11 @@
       "subtitle": "rank-4 合成纹理上的块缺失和划痕修复。",
       "story": "纹理图由平滑基函数构造，天然低秩。RPCA 能够准确恢复缺失块。",
       "images": {
-        "overview": "/results/texture_block_overview.png",
-        "clean": "/assets/texture_block_clean.png",
-        "observed": "/assets/texture_block_observed.png",
-        "recovered": "/assets/texture_block_recovered.png",
-        "sparse": "/assets/texture_block_sparse.png"
+        "overview": "results/texture_block_overview.png",
+        "clean": "assets/texture_block_clean.png",
+        "observed": "assets/texture_block_observed.png",
+        "recovered": "assets/texture_block_recovered.png",
+        "sparse": "assets/texture_block_sparse.png"
       },
       "metrics": {
         "psnr": 42.23709266360166,
@@ -140,12 +140,12 @@
       "subtitle": "10% 椒盐噪声 + rank-4 纹理。",
       "story": "低秩纹理上的椒盐噪声。RPCA 通过隔离稀疏噪声分量实现极高 PSNR。",
       "images": {
-        "overview": "/results/texture_salt_overview.png",
-        "comparison": "/results/saltpepper_vs_median_texture.png",
-        "clean": "/assets/texture_salt_clean.png",
-        "observed": "/assets/texture_salt_observed.png",
-        "recovered": "/assets/texture_salt_recovered.png",
-        "sparse": "/assets/texture_salt_sparse.png"
+        "overview": "results/texture_salt_overview.png",
+        "comparison": "results/saltpepper_vs_median_texture.png",
+        "clean": "assets/texture_salt_clean.png",
+        "observed": "assets/texture_salt_observed.png",
+        "recovered": "assets/texture_salt_recovered.png",
+        "sparse": "assets/texture_salt_sparse.png"
       },
       "metrics": {
         "psnr": 9999.0,
@@ -162,47 +162,47 @@
     {
       "title": "λ 敏感性分析",
       "description": "在椎盐噪声实验中，参数 c 从 0.4 提升到 1.5 时，恢复质量持续变好；c 过大后开始回落。这张图真正让我理解了 λ 的物理含义。",
-      "image": "/results/lambda_sensitivity.png"
+      "image": "results/lambda_sensitivity.png"
     },
     {
       "title": "收敛曲线",
       "description": "Inexact ALM 在 30 余次迭代后收敛，残差曲线平滑下降。μ 的指数增长策略（每次乘 ρ=1.5）让收敛速度非常快。",
-      "image": "/results/convergence_curve.png"
+      "image": "results/convergence_curve.png"
     },
     {
       "title": "彩色纹理扩展",
       "description": "对彩色纹理图采用逐通道 RPCA，PSNR=29.37 dB。更好的做法是把 RGB 拼成大矩阵做联合分解。",
-      "image": "/results/color_extension.png"
+      "image": "results/color_extension.png"
     },
     {
       "title": "统一对比网格",
       "description": "2 种底图 × 3 种破坏类型的完整对比。每格从左到右：干净图 / 观测图 / 恢复 L / |S|。纹理底图全面碾压人像底图。",
-      "image": "/results/unified_grid.png"
+      "image": "results/unified_grid.png"
     },
     {
       "title": "RPCA vs 中值滤波",
       "description": "人像椎盐场景：RPCA PSNR=54.50 dB，中值滤波 30.72 dB。中值滤波模糊边缘，RPCA 全局剥离噪点。",
-      "image": "/results/saltpepper_vs_median.png"
+      "image": "results/saltpepper_vs_median.png"
     },
     {
       "title": "Optional (2): RSLRT",
       "description": "加入 DCT 稀疏先验后 PSNR 提升到 19.00 dB，相对 RPCA 基线提升约 2.65 dB。",
-      "image": "/results/optional_rslrt_vs_rpca.png"
+      "image": "results/optional_rslrt_vs_rpca.png"
     },
     {
       "title": "Optional (3): TILT",
       "description": "TILT affine/projective 分别达到 19.54 dB 和 19.74 dB，变换矩阵误差仅 0.003/0.006。",
-      "image": "/results/optional_tilt_projective.png"
+      "image": "results/optional_tilt_projective.png"
     },
     {
       "title": "RSLRT 结果详情",
       "description": "在大块缺失和细线污染同时存在时，双先验模型能较好恢复纹理结构。窗格纹理边界更完整、更干净。",
-      "image": "/results/optional_rslrt_overview.png"
+      "image": "results/optional_rslrt_overview.png"
     },
     {
       "title": "TILT 参数曲线",
       "description": "外层循环估计变换参数，内层 ALM 更新 L、E。金字塔策略先低分辨率粗调，再高分辨率精调。",
-      "image": "/results/optional_tilt_curve.png"
+      "image": "results/optional_tilt_curve.png"
     }
   ],
   "optional": {
@@ -317,5 +317,5 @@
     "median_psnr": 30.72202969150878,
     "median_ssim": 0.9400421994872877
   },
-  "report": "/report/report.pdf"
+  "report": "report/report.pdf"
 }

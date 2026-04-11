@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RPCA 图像修复实验</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page-shell">
@@ -21,7 +21,7 @@
           <a href="#lab">交互实验室</a>
           <a href="#optional">加分实验</a>
           <a href="#analysis">分析</a>
-          <a href="/report/report.pdf" target="_blank" rel="noreferrer">实验报告</a>
+          <a href="report/report.pdf" target="_blank" rel="noreferrer">实验报告</a>
         </nav>
       </header>
 
@@ -45,7 +45,7 @@
                 <span>低秩 + 稀疏</span>
                 <strong>图像修复 = 矩阵分解</strong>
               </div>
-              <img src="/results/unified_grid.png" alt="统一实验网格" />
+              <img src="results/unified_grid.png" alt="统一实验网格" />
             </div>
             <div class="hero-card hero-card-float">
               <span>6 个实验场景</span>
@@ -162,7 +162,7 @@
             </div>
           </div>
           <div class="feature-panel feature-light">
-            <img src="/results/unified_grid.png" alt="统一对比网格" />
+            <img src="results/unified_grid.png" alt="统一对比网格" />
             <div class="caption-block">
               <strong>2 种底图 &times; 3 种破坏 = 6 个实验</strong>
               <p>纹理底图严格低秩（rank-4），人像底图做 rank-6 截断。不同底图 + 不同破坏类型，RPCA 的表现差异很大。</p>
@@ -280,19 +280,19 @@
               <div class="optional-images">
                 <div class="optional-img-card">
                   <span>干净图</span>
-                  <img src="/assets/optional_rslrt_clean.png" alt="RSLRT 干净图" />
+                  <img src="assets/optional_rslrt_clean.png" alt="RSLRT 干净图" />
                 </div>
                 <div class="optional-img-card">
                   <span>观测图（损坏）</span>
-                  <img src="/assets/optional_rslrt_observed.png" alt="RSLRT 观测图" />
+                  <img src="assets/optional_rslrt_observed.png" alt="RSLRT 观测图" />
                 </div>
                 <div class="optional-img-card">
                   <span>修复结果</span>
-                  <img src="/assets/optional_rslrt_repaired.png" alt="RSLRT 修复结果" />
+                  <img src="assets/optional_rslrt_repaired.png" alt="RSLRT 修复结果" />
                 </div>
                 <div class="optional-img-card">
                   <span>异常区域掩码</span>
-                  <img src="/assets/optional_rslrt_support.png" alt="RSLRT 掩码" />
+                  <img src="assets/optional_rslrt_support.png" alt="RSLRT 掩码" />
                 </div>
               </div>
               <div class="optional-metrics" id="rslrt-metrics"></div>
@@ -308,25 +308,25 @@
               <div class="optional-images">
                 <div class="optional-img-card">
                   <span>仿射：观测图</span>
-                  <img src="/assets/optional_tilt_affine_observed.png" alt="TILT 仿射观测图" />
+                  <img src="assets/optional_tilt_affine_observed.png" alt="TILT 仿射观测图" />
                 </div>
                 <div class="optional-img-card">
                   <span>仿射：校正结果</span>
-                  <img src="/assets/optional_tilt_affine_rectified.png" alt="TILT 仿射校正" />
+                  <img src="assets/optional_tilt_affine_rectified.png" alt="TILT 仿射校正" />
                 </div>
                 <div class="optional-img-card">
                   <span>投影：观测图</span>
-                  <img src="/assets/optional_tilt_projective_observed.png" alt="TILT 投影观测图" />
+                  <img src="assets/optional_tilt_projective_observed.png" alt="TILT 投影观测图" />
                 </div>
                 <div class="optional-img-card">
                   <span>投影：校正结果</span>
-                  <img src="/assets/optional_tilt_projective_rectified.png" alt="TILT 投影校正" />
+                  <img src="assets/optional_tilt_projective_rectified.png" alt="TILT 投影校正" />
                 </div>
               </div>
               <div class="optional-metrics" id="tilt-metrics"></div>
               <div class="optional-extra-img">
                 <span>TILT 参数更新曲线</span>
-                <img src="/results/optional_tilt_curve.png" alt="TILT 曲线" />
+                <img src="results/optional_tilt_curve.png" alt="TILT 曲线" />
               </div>
             </div>
           </div>
@@ -374,12 +374,12 @@
           <h3>源代码、实验报告、环境文件，以及完整交互式网站。</h3>
         </div>
         <div class="footer-links">
-          <a href="/report/report.pdf" target="_blank" rel="noreferrer">打开实验报告</a>
+          <a href="report/report.pdf" target="_blank" rel="noreferrer">打开实验报告</a>
           <span>Python 标准库后端 + 原生 HTML/CSS/JS 前端</span>
         </div>
       </footer>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
