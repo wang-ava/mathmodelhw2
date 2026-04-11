@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPCA 图像修复实验</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient ambient-a"></div>
+      <div class="ambient ambient-b"></div>
+      <header class="site-header">
+        <div class="brand-lockup">
+          <span class="brand-chip">MM 2026 / HW2</span>
+          <span class="brand-name">RPCA 图像修复实验</span>
+        </div>
+        <nav class="top-nav">
+          <a href="#grid-map">结果地图</a>
+          <a href="#experiments">实验详情</a>
+          <a href="#lab">交互实验室</a>
+          <a href="#optional">加分实验</a>
+          <a href="#analysis">分析</a>
+          <a href="/report/report.pdf" target="_blank" rel="noreferrer">实验报告</a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- Hero -->
+        <section class="hero reveal">
+          <div class="hero-copy">
+            <p class="eyebrow" id="hero-eyebrow">数学建模 / 作业二 / 选题二</p>
+            <h1 id="hero-title">RPCA 图像修复</h1>
+            <p class="hero-summary" id="hero-summary">
+              A = L + S &mdash; 把一张被污染的图拆成低秩的干净图 L 和稀疏的异常项 S。在 2 种底图 &times; 3 种破坏类型上的完整实验，以及 RSLRT 和 TILT 两个论文复现。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-dark" href="#grid-map">浏览结果地图</a>
+              <a class="button button-ghost" href="#lab">打开交互实验室</a>
+            </div>
+          </div>
+          <div class="hero-art">
+            <div class="hero-card hero-card-main">
+              <div class="hero-card-copy">
+                <span>低秩 + 稀疏</span>
+                <strong>图像修复 = 矩阵分解</strong>
+              </div>
+              <img src="/results/unified_grid.png" alt="统一实验网格" />
+            </div>
+            <div class="hero-card hero-card-float">
+              <span>6 个实验场景</span>
+              <strong>2 种底图，3 种破坏类型</strong>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-rail reveal" id="hero-stats"></section>
+
+        <!-- Result Map: 2x3 Grid -->
+        <section class="grid-map reveal" id="grid-map">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">结果地图</p>
+              <h2>2 &times; 3 统一对比网格</h2>
+            </div>
+            <p class="section-desc">每格从左到右：干净图 / 观测图 / RPCA 恢复 L / 分离出的稀疏异常 |S|。点击任意格子查看实验详情。</p>
+          </div>
+          <div class="grid-map-container" id="grid-map-container">
+            <div class="grid-map-label grid-map-label-col" style="grid-column:2;grid-row:1">文字遮挡</div>
+            <div class="grid-map-label grid-map-label-col" style="grid-column:3;grid-row:1">缺块修复</div>
+            <div class="grid-map-label grid-map-label-col" style="grid-column:4;grid-row:1">椒盐噪声</div>
+            <div class="grid-map-label grid-map-label-row" style="grid-column:1;grid-row:2">人像 (rank-6)</div>
+            <div class="grid-map-label grid-map-label-row" style="grid-column:1;grid-row:3">纹理 (rank-4)</div>
+            <!-- Grid cells injected by JS -->
+          </div>
+        </section>
+
+        <!-- Experiment Detail -->
+        <section class="atlas reveal" id="experiments">
+          <div class="section-heading">
+            <p class="eyebrow">实验详情</p>
+            <h2>点击上方网格或左侧列表查看详情</h2>
+          </div>
+          <div class="detail-usage-hint">
+            <p><strong>使用说明：</strong>点击左侧列表或上方结果地图中的任意格子，右侧会显示该实验的观测图与恢复图对比。拖动中间的滑块可以直观比较 RPCA 修复前后的效果。下方还会展示分离出的稀疏异常项 |S|。</p>
+          </div>
+          <div class="atlas-grid">
+            <aside class="atlas-list" id="atlas-list"></aside>
+            <article class="atlas-detail" id="atlas-detail">
+              <div class="detail-copy">
+                <p class="detail-label">当前实验</p>
+                <h3 id="detail-title">选择一个实验</h3>
+                <p id="detail-subtitle" class="detail-subtitle"></p>
+                <p id="detail-story" class="detail-story"></p>
+              </div>
+              <div class="detail-visual">
+                <!-- Image comparison slider -->
+                <div class="comparison-wrapper" id="comparison-wrapper">
+                  <div class="comparison-label comparison-label-left">观测图</div>
+                  <div class="comparison-label comparison-label-right">恢复图 L</div>
+                  <img id="detail-observed" class="comparison-img comparison-img-left" src="" alt="观测图" />
+                  <img id="detail-recovered" class="comparison-img comparison-img-right" src="" alt="恢复图" />
+                  <div class="comparison-slider" id="comparison-slider">
+                    <div class="comparison-slider-line"></div>
+                    <div class="comparison-slider-handle"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Metrics bar: outside the dark panel so numbers are never clipped -->
+          <div class="detail-metrics-bar" id="detail-metrics"></div>
+
+          <!-- Sparse visualization below detail -->
+          <div class="detail-sparse-row" id="detail-sparse-row">
+            <div class="sparse-card">
+              <div class="stage-copy">
+                <span>稀疏异常幅度</span>
+                <strong>分离出的异常项 |S|</strong>
+              </div>
+              <img id="detail-sparse" src="" alt="稀疏项" />
+            </div>
+            <div class="sparse-card" id="detail-comparison-card" style="display:none;">
+              <div class="stage-copy">
+                <span>方法对比</span>
+                <strong>RPCA vs 中值滤波</strong>
+              </div>
+              <img id="detail-comparison" src="" alt="方法对比" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Method -->
+        <section class="split-feature reveal">
+          <div class="feature-panel feature-dark">
+            <p class="eyebrow">方法说明</p>
+            <h2>手写 Inexact ALM 求解器</h2>
+            <p>
+              目标函数是 <code>min ||L||_* + &lambda;||S||_1, s.t. A = L + S</code>。
+              把 NP-hard 的 rank/l0 松弛为核范数/l1，用交替方向法迭代求解。
+              只调用了 numpy.linalg.svd，其余全部手写。
+            </p>
+            <div class="formula-stack">
+              <div class="formula-card">
+                <span>低秩项更新 (SVT)</span>
+                <strong>L = SVT<sub>1/&mu;</sub>(A - S + Y/&mu;)</strong>
+              </div>
+              <div class="formula-card">
+                <span>稀疏项更新 (Shrink)</span>
+                <strong>S = Shrink<sub>&lambda;/&mu;</sub>(A - L + Y/&mu;)</strong>
+              </div>
+              <div class="formula-card">
+                <span>乘子更新</span>
+                <strong>Y &larr; Y + &mu;(A - L - S)</strong>
+              </div>
+              <div class="formula-card">
+                <span>惩罚系数递增</span>
+                <strong>&mu; &larr; min(&rho;&mu;, &mu;<sub>bar</sub>)</strong>
+              </div>
+            </div>
+          </div>
+          <div class="feature-panel feature-light">
+            <img src="/results/unified_grid.png" alt="统一对比网格" />
+            <div class="caption-block">
+              <strong>2 种底图 &times; 3 种破坏 = 6 个实验</strong>
+              <p>纹理底图严格低秩（rank-4），人像底图做 rank-6 截断。不同底图 + 不同破坏类型，RPCA 的表现差异很大。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Repair Lab -->
+        <section class="lab reveal" id="lab">
+          <div class="section-heading section-heading-inline">
+            <div>
+              <p class="eyebrow">交互实验室</p>
+              <h2>上传图片，实时调参，看 RPCA 怎么分解</h2>
+            </div>
+            <div class="lab-note">
+              上传图会缩放到 320px 以内保证响应速度。调参后自动重新运行 RPCA。
+            </div>
+          </div>
+
+          <div class="lab-usage-hint">
+            <p><strong>如何使用：</strong>点击下方的「加载示例」按钮可以查看课程实验中预生成的 RPCA 修复结果（观测图、恢复图 L、稀疏项 |S|）。自定义图片的实时 RPCA 修复需要本地运行 <code>python webapp.py</code> 启动后端服务器。</p>
+          </div>
+
+          <div class="lab-grid">
+            <div class="lab-controls">
+              <label class="upload-drop" id="upload-drop">
+                <input type="file" id="file-input" accept="image/*" />
+                <span class="upload-kicker">拖拽、点击或浏览</span>
+                <strong>上传图片进行 RPCA 修复</strong>
+                <small>支持灰度图和彩色图（逐通道 RPCA）。</small>
+              </label>
+
+              <div class="control-block">
+                <div class="control-head">
+                  <label for="lambda-scale">&lambda; 系数 c</label>
+                  <span id="lambda-scale-value">1.20</span>
+                </div>
+                <input type="range" id="lambda-scale" min="0.2" max="2.8" step="0.1" value="1.2" />
+                <div class="control-hint">c 越大，越倾向于把异常归入 L（保留更多细节）；c 越小，越倾向于把异常归入 S（去噪更强）。</div>
+              </div>
+
+              <div class="control-block">
+                <div class="control-head">
+                  <label for="max-iter">最大迭代数</label>
+                  <span id="max-iter-value">180</span>
+                </div>
+                <input type="range" id="max-iter" min="40" max="320" step="10" value="180" />
+                <div class="control-hint">通常 30~50 次迭代即可收敛。增大迭代数对已收敛的结果无影响。</div>
+              </div>
+
+              <div class="lab-sample-buttons">
+                <button class="button button-ghost button-sample" data-sample="portrait_salt">
+                  加载：人像椒盐噪声
+                </button>
+                <button class="button button-ghost button-sample" data-sample="portrait_text">
+                  加载：人像文字遮挡
+                </button>
+                <button class="button button-ghost button-sample" data-sample="texture_salt">
+                  加载：纹理椒盐噪声
+                </button>
+                <button class="button button-ghost button-sample" data-sample="texture_block">
+                  加载：纹理缺块修复
+                </button>
+              </div>
+
+              <div class="lab-stats" id="upload-stats">
+                <p class="status-pill">等待图片</p>
+                <ul class="stat-list">
+                  <li>上传图片或加载示例后，调整参数会自动重新运行 RPCA。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="lab-stage">
+              <div class="stage-card">
+                <div class="stage-copy">
+                  <span>观测图像</span>
+                  <strong>输入图像 A</strong>
+                </div>
+                <img id="upload-observed" src="" alt="观测图像预览" />
+              </div>
+              <div class="stage-card">
+                <div class="stage-copy">
+                  <span>恢复的低秩项</span>
+                  <strong>修复结果 L</strong>
+                </div>
+                <img id="upload-recovered" src="" alt="修复结果预览" />
+              </div>
+              <div class="stage-card">
+                <div class="stage-copy">
+                  <span>稀疏异常幅度</span>
+                  <strong>分离出的异常项 |S|</strong>
+                </div>
+                <img id="upload-sparse" src="" alt="稀疏项预览" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Optional Experiments -->
+        <section class="optional-section reveal" id="optional">
+          <div class="section-heading">
+            <p class="eyebrow">加分实验</p>
+            <h2>论文复现：RSLRT &amp; TILT</h2>
+          </div>
+
+          <div class="optional-grid">
+            <!-- RSLRT -->
+            <div class="optional-card">
+              <div class="optional-card-header">
+                <span class="optional-tag">加分 (2)</span>
+                <h3>Repairing Sparse Low-rank Texture</h3>
+                <p>规则纹理不仅图像域低秩，DCT 域也稀疏。模型引入 W = DCT(X) 的稀疏约束，形成低秩 + DCT 稀疏双先验。</p>
+              </div>
+              <div class="optional-images">
+                <div class="optional-img-card">
+                  <span>干净图</span>
+                  <img src="/assets/optional_rslrt_clean.png" alt="RSLRT 干净图" />
+                </div>
+                <div class="optional-img-card">
+                  <span>观测图（损坏）</span>
+                  <img src="/assets/optional_rslrt_observed.png" alt="RSLRT 观测图" />
+                </div>
+                <div class="optional-img-card">
+                  <span>修复结果</span>
+                  <img src="/assets/optional_rslrt_repaired.png" alt="RSLRT 修复结果" />
+                </div>
+                <div class="optional-img-card">
+                  <span>异常区域掩码</span>
+                  <img src="/assets/optional_rslrt_support.png" alt="RSLRT 掩码" />
+                </div>
+              </div>
+              <div class="optional-metrics" id="rslrt-metrics"></div>
+            </div>
+
+            <!-- TILT -->
+            <div class="optional-card">
+              <div class="optional-card-header">
+                <span class="optional-tag">加分 (3)</span>
+                <h3>TILT: Transform Invariant Low-rank Textures</h3>
+                <p>如果纹理发生了几何畸变（拍摄角度歪了），TILT 把几何校正和低秩分解放到同一个框架里。外层估计变换参数，内层 ALM 更新 L、E。</p>
+              </div>
+              <div class="optional-images">
+                <div class="optional-img-card">
+                  <span>仿射：观测图</span>
+                  <img src="/assets/optional_tilt_affine_observed.png" alt="TILT 仿射观测图" />
+                </div>
+                <div class="optional-img-card">
+                  <span>仿射：校正结果</span>
+                  <img src="/assets/optional_tilt_affine_rectified.png" alt="TILT 仿射校正" />
+                </div>
+                <div class="optional-img-card">
+                  <span>投影：观测图</span>
+                  <img src="/assets/optional_tilt_projective_observed.png" alt="TILT 投影观测图" />
+                </div>
+                <div class="optional-img-card">
+                  <span>投影：校正结果</span>
+                  <img src="/assets/optional_tilt_projective_rectified.png" alt="TILT 投影校正" />
+                </div>
+              </div>
+              <div class="optional-metrics" id="tilt-metrics"></div>
+              <div class="optional-extra-img">
+                <span>TILT 参数更新曲线</span>
+                <img src="/results/optional_tilt_curve.png" alt="TILT 曲线" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Analysis -->
+        <section class="analysis-section reveal" id="analysis">
+          <div class="section-heading">
+            <p class="eyebrow">分析</p>
+            <h2>参数敏感性、收敛性与对比实验</h2>
+          </div>
+          <div class="insight-grid" id="insight-grid"></div>
+        </section>
+
+        <!-- Summary Table -->
+        <section class="summary-section reveal" id="summary">
+          <div class="section-heading">
+            <p class="eyebrow">汇总</p>
+            <h2>全部实验指标一览</h2>
+          </div>
+          <div class="summary-table-wrap">
+            <table class="summary-table" id="summary-table">
+              <thead>
+                <tr>
+                  <th>场景</th>
+                  <th>方法</th>
+                  <th>PSNR (dB)</th>
+                  <th>SSIM</th>
+                  <th>相对误差</th>
+                  <th>Support F1</th>
+                  <th>&lambda;</th>
+                  <th>迭代次数</th>
+                  <th>Rank</th>
+                </tr>
+              </thead>
+              <tbody id="summary-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer reveal">
+        <div>
+          <p class="eyebrow">交付内容</p>
+          <h3>源代码、实验报告、环境文件，以及完整交互式网站。</h3>
+        </div>
+        <div class="footer-links">
+          <a href="/report/report.pdf" target="_blank" rel="noreferrer">打开实验报告</a>
+          <span>Python 标准库后端 + 原生 HTML/CSS/JS 前端</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
