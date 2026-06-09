@@ -1,0 +1,12 @@
+{
+  "rslrt_psnr": 19.003128157433625,
+  "rslrt_ssim": 0.8911872142809073,
+  "rslrt_support_f1": 0.16631726065643815,
+  "rslrt_gain_over_rpca": 2.651945613202656,
+  "tilt_affine_psnr": 19.54445746058784,
+  "tilt_affine_ssim": 0.9174654644839895,
+  "tilt_affine_matrix_error": 0.002704284992236744,
+  "tilt_projective_psnr": 19.74494584749982,
+  "tilt_projective_ssim": 0.9208713382439417,
+  "tilt_projective_matrix_error": 0.0061459749902801316
+}
