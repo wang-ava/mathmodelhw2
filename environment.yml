@@ -1,0 +1,9 @@
+name: mathmodel-hw2-rpca
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - numpy=2.4.2
+  - scipy=1.17.0
+  - matplotlib=3.10.8
+  - pillow=12.1.0
