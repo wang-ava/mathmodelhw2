@@ -257,7 +257,7 @@
   .figure-showcase .img-caption,
   .img-item .img-sub { font-size: 22px; }
   .exp-tab { font-size: 23px; padding: 14px 26px; }
-  .exp-panel .img-grid.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .exp-panel .img-grid.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .case-note { font-size: 23px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
   .case-note strong { font-size: 32px; }
   .badge { font-size: 19px; padding: 4px 12px; }
@@ -282,6 +282,10 @@
   .single-column { grid-template-columns: 1fr !important; }
   .overview-stack { display: grid; gap: 54px; }
   .poisson-case { margin-bottom: 74px; }
+  @media (max-width: 700px) {
+    .exp-panel .img-grid.g4,
+    .img-grid.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 </style>
 </head>
 <body>
@@ -313,13 +317,6 @@
     <span>PB24261881 陈姝雅</span>
     <span>PB24261888 乐慧璇</span>
   </div>
-  <div class="doc-links" aria-label="原始实验资料">
-    <a href="docs/report/rpca_report.pdf">RPCA 原始报告 PDF</a>
-    <a href="docs/rpca_detailed_script.md">RPCA 详细讲稿</a>
-    <a href="docs/report/poisson_report.pdf">Poisson 原始报告 PDF</a>
-    <a href="docs/poisson_full_script.md">Poisson 完整讲稿</a>
-  </div>
-
   <div class="pipeline">
     <div class="pipe-node blue">
       <div class="label">Act I</div>
@@ -574,7 +571,6 @@
   </div>
 
   <h3>1.7 总览网格图</h3>
-  <p>总览图改为逐行展示，便于汇报时一张图对应一个结论。每行从输入、低秩恢复、稀疏异常到真值对照，突出 RPCA 对不同遮挡形态的分离能力。</p>
   <div class="overview-stack">
     <figure class="figure-showcase">
       <img src="assets/rpca/results/portrait_text_overview.png" alt="人像文字遮挡 RPCA 结果">
@@ -643,16 +639,12 @@
 
   <div class="card" style="margin-top:20px">
     <h4>彩色图像扩展</h4>
-    <p>对彩色图像，将 R/G/B 三通道分别执行 RPCA，并在输出端合成为 RGB 结果。下方同时给出原图、退化观测、低秩恢复与完整流程图，展示灰度矩阵分解到三通道图像处理的可迁移性。</p>
-    <div class="img-grid g3" style="margin:14px 0 18px">
+    <div class="img-grid g4" style="margin-top:14px">
       <div class="img-item"><img src="assets/rpca/assets/color_clean.png" alt="彩色原图"><div class="img-caption">真值（彩色原图）</div></div>
       <div class="img-item"><img src="assets/rpca/assets/color_observed.png" alt="彩色退化观测"><div class="img-caption">输入（彩色退化观测）</div></div>
       <div class="img-item"><img src="assets/rpca/assets/color_recovered.png" alt="彩色低秩恢复"><div class="img-caption">L（彩色低秩恢复）</div></div>
+      <div class="img-item"><img src="assets/rpca/results/color_extension.png" alt="彩色图像扩展完整对比"><div class="img-caption">彩色 RPCA 完整对比</div></div>
     </div>
-    <figure class="figure-showcase presentation-narrow" style="margin:0">
-      <img src="assets/rpca/results/color_extension_main.png" alt="彩色图像扩展示意">
-      <figcaption class="img-caption">彩色图像扩展流程：RGB 三通道分别分解后合成为最终恢复结果。</figcaption>
-    </figure>
   </div>
 </section>
 
