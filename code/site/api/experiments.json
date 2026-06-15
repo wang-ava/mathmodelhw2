@@ -171,7 +171,24 @@
     },
     {
       "title": "彩色纹理扩展",
-      "description": "对彩色纹理图采用逐通道 RPCA，PSNR=29.37 dB。更好的做法是把 RGB 拼成大矩阵做联合分解。",
+      "description": "对彩色纹理图采用逐通道 RPCA，PSNR=29.37 dB。原图、退化观测和低秩恢复共同说明灰度矩阵分解可以迁移到 RGB 三通道处理。",
+      "images": [
+        {
+          "label": "真值",
+          "src": "assets/color_clean.png",
+          "alt": "彩色原图"
+        },
+        {
+          "label": "观测",
+          "src": "assets/color_observed.png",
+          "alt": "彩色退化观测"
+        },
+        {
+          "label": "恢复",
+          "src": "assets/color_recovered.png",
+          "alt": "彩色低秩恢复"
+        }
+      ],
       "image": "results/color_extension.png"
     },
     {
@@ -185,12 +202,12 @@
       "image": "results/saltpepper_vs_median.png"
     },
     {
-      "title": "Optional (2): RSLRT",
+      "title": "进阶模型验证：RSLRT",
       "description": "加入 DCT 稀疏先验后 PSNR 提升到 19.00 dB，相对 RPCA 基线提升约 2.65 dB。",
       "image": "results/optional_rslrt_vs_rpca.png"
     },
     {
-      "title": "Optional (3): TILT",
+      "title": "进阶模型验证：TILT",
       "description": "TILT affine/projective 分别达到 19.54 dB 和 19.74 dB，变换矩阵误差仅 0.003/0.006。",
       "image": "results/optional_tilt_projective.png"
     },

@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "report": [
+    {
+      "case": "case1",
+      "pixels": 18212,
+      "changed": 3.843,
+      "timeMs": 59.2,
+      "seam": {
+        "direct": 51.96,
+        "importing": 6.85,
+        "mixing": 6.8
+      }
+    },
+    {
+      "case": "case2",
+      "pixels": 15081,
+      "changed": 2.602,
+      "timeMs": 38.9,
+      "seam": {
+        "direct": 68.18,
+        "importing": 15.22,
+        "mixing": 16.51
+      }
+    },
+    {
+      "case": "case3",
+      "pixels": 16350,
+      "changed": 4.615,
+      "timeMs": 41.8,
+      "seam": {
+        "direct": 88.05,
+        "importing": 11.69,
+        "mixing": 13.04
+      }
+    },
+    {
+      "case": "case4",
+      "pixels": 20376,
+      "changed": 4.313,
+      "timeMs": 52.2,
+      "seam": {
+        "direct": 39.92,
+        "importing": 7.6,
+        "mixing": 9.56
+      }
+    }
+  ],
+  "inpaint": {
+    "case": "case5",
+    "pixels": 9890,
+    "changed": 0.883,
+    "timeMs": 22.1
+  },
+  "texture": {
+    "case": "case3",
+    "pixels": 15260,
+    "threshold": 28,
+    "changed": 0.412,
+    "timeMs": 27.2
+  }
+}

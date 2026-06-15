@@ -19,7 +19,7 @@
           <a href="#grid-map">结果地图</a>
           <a href="#experiments">实验详情</a>
           <a href="#lab">交互实验室</a>
-          <a href="#optional">加分实验</a>
+          <a href="#optional">进阶验证</a>
           <a href="#analysis">分析</a>
           <a href="report/report.pdf" target="_blank" rel="noreferrer">实验报告</a>
         </nav>
@@ -262,10 +262,10 @@
           </div>
         </section>
 
-        <!-- Optional Experiments -->
+        <!-- Advanced model validation -->
         <section class="optional-section reveal" id="optional">
           <div class="section-heading">
-            <p class="eyebrow">加分实验</p>
+            <p class="eyebrow">进阶模型验证</p>
             <h2>论文复现：RSLRT &amp; TILT</h2>
           </div>
 
@@ -273,7 +273,7 @@
             <!-- RSLRT -->
             <div class="optional-card">
               <div class="optional-card-header">
-                <span class="optional-tag">加分 (2)</span>
+                <span class="optional-tag">模型验证 A</span>
                 <h3>Repairing Sparse Low-rank Texture</h3>
                 <p>规则纹理不仅图像域低秩，DCT 域也稀疏。模型引入 W = DCT(X) 的稀疏约束，形成低秩 + DCT 稀疏双先验。</p>
               </div>
@@ -301,7 +301,7 @@
             <!-- TILT -->
             <div class="optional-card">
               <div class="optional-card-header">
-                <span class="optional-tag">加分 (3)</span>
+                <span class="optional-tag">模型验证 B</span>
                 <h3>TILT: Transform Invariant Low-rank Textures</h3>
                 <p>如果纹理发生了几何畸变（拍摄角度歪了），TILT 把几何校正和低秩分解放到同一个框架里。外层估计变换参数，内层 ALM 更新 L、E。</p>
               </div>

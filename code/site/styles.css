@@ -1093,6 +1093,37 @@ code {
   object-fit: cover;
 }
 
+.insight-card .insight-main-image {
+  border-top: 1px solid rgba(15, 45, 61, 0.08);
+}
+
+.insight-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px 12px 0;
+}
+
+.insight-image-grid figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(15, 45, 61, 0.05);
+}
+
+.insight-image-grid img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f2eadf;
+}
+
+.insight-image-grid figcaption {
+  padding: 7px 8px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(15, 45, 61, 0.72);
+}
+
 .insight-card-body {
   padding: 20px 22px 24px;
 }

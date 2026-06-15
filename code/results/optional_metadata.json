@@ -1,12 +1,12 @@
 {
-  "rslrt_psnr": 19.003128157433625,
+  "rslrt_psnr": 19.00312815743362,
   "rslrt_ssim": 0.8911872142809073,
   "rslrt_support_f1": 0.16631726065643815,
-  "rslrt_gain_over_rpca": 2.651945613202656,
-  "tilt_affine_psnr": 19.54445746058784,
-  "tilt_affine_ssim": 0.9174654644839895,
-  "tilt_affine_matrix_error": 0.002704284992236744,
-  "tilt_projective_psnr": 19.74494584749982,
+  "rslrt_gain_over_rpca": 2.651945613202649,
+  "tilt_affine_psnr": 19.544457460587775,
+  "tilt_affine_ssim": 0.917465464483989,
+  "tilt_affine_matrix_error": 0.0027042849922369948,
+  "tilt_projective_psnr": 19.744945847499807,
   "tilt_projective_ssim": 0.9208713382439417,
-  "tilt_projective_matrix_error": 0.0061459749902801316
+  "tilt_projective_matrix_error": 0.006145974990281584
 }

@@ -244,15 +244,24 @@ function renderInsights(payload) {
   if (!gridEl) return;
   gridEl.innerHTML = payload.analysis_panels
     .map(
-      (panel) =>
-        `<article class="insight-card"><img src="${panel.image}" alt="${panel.title}" loading="lazy" /><div class="insight-card-body"><h3>${panel.title}</h3><p>${panel.description}</p></div></article>`
+      (panel) => {
+        const media = panel.images
+          ? `<div class="insight-image-grid">${panel.images
+              .map(
+                (item) =>
+                  `<figure><img src="${item.src}" alt="${item.alt || item.label}" loading="lazy" /><figcaption>${item.label}</figcaption></figure>`
+              )
+              .join("")}</div>${panel.image ? `<img class="insight-main-image" src="${panel.image}" alt="${panel.title}" loading="lazy" />` : ""}`
+          : `<img src="${panel.image}" alt="${panel.title}" loading="lazy" />`;
+        return `<article class="insight-card">${media}<div class="insight-card-body"><h3>${panel.title}</h3><p>${panel.description}</p></div></article>`;
+      }
     )
     .join("");
 }
 
-// ---- Optional metrics ----
+// ---- Advanced model metrics ----
 
-function renderOptionalMetrics(payload) {
+function renderAdvancedMetrics(payload) {
   const opt = payload.optional || {};
 
   const rslrtEl = $("rslrt-metrics");
@@ -448,7 +457,7 @@ async function bootstrap() {
     renderGridMap(payload);
     renderExperiments(payload);
     renderInsights(payload);
-    renderOptionalMetrics(payload);
+    renderAdvancedMetrics(payload);
     renderSummaryTable(payload);
   } catch (err) {
     console.error("Bootstrap error:", err);

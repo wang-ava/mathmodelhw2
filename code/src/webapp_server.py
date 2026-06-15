@@ -194,7 +194,12 @@ def experiment_payload() -> dict[str, Any]:
             },
             {
                 "title": "\u5f69\u8272\u7eb9\u7406\u6269\u5c55",
-                "description": f"\u5bf9\u5f69\u8272\u7eb9\u7406\u56fe\u91c7\u7528\u9010\u901a\u9053 RPCA\uff0cPSNR={metadata['color_extension']['color_psnr']:.2f} dB\u3002\u66f4\u597d\u7684\u505a\u6cd5\u662f\u628a RGB \u62fc\u6210\u5927\u77e9\u9635\u505a\u8054\u5408\u5206\u89e3\u3002",
+                "description": f"\u5bf9\u5f69\u8272\u7eb9\u7406\u56fe\u91c7\u7528\u9010\u901a\u9053 RPCA\uff0cPSNR={metadata['color_extension']['color_psnr']:.2f} dB\u3002\u539f\u56fe\u3001\u9000\u5316\u89c2\u6d4b\u548c\u4f4e\u79e9\u6062\u590d\u5171\u540c\u8bf4\u660e\u7070\u5ea6\u77e9\u9635\u5206\u89e3\u53ef\u4ee5\u8fc1\u79fb\u5230 RGB \u4e09\u901a\u9053\u5904\u7406\u3002",
+                "images": [
+                    {"label": "\u771f\u503c", "src": "/assets/color_clean.png", "alt": "\u5f69\u8272\u539f\u56fe"},
+                    {"label": "\u89c2\u6d4b", "src": "/assets/color_observed.png", "alt": "\u5f69\u8272\u9000\u5316\u89c2\u6d4b"},
+                    {"label": "\u6062\u590d", "src": "/assets/color_recovered.png", "alt": "\u5f69\u8272\u4f4e\u79e9\u6062\u590d"},
+                ],
                 "image": "/results/color_extension.png",
             },
             {
@@ -208,12 +213,12 @@ def experiment_payload() -> dict[str, Any]:
                 "image": "/results/saltpepper_vs_median.png",
             },
             {
-                "title": "Optional (2): RSLRT",
+                "title": "进阶模型验证：RSLRT",
                 "description": f"\u52a0\u5165 DCT \u7a00\u758f\u5148\u9a8c\u540e PSNR \u63d0\u5347\u5230 {optional_metadata.get('rslrt_psnr', 0.0):.2f} dB\uff0c\u76f8\u5bf9 RPCA \u57fa\u7ebf\u63d0\u5347\u7ea6 {optional_metadata.get('rslrt_gain_over_rpca', 0.0):.2f} dB\u3002",
                 "image": "/results/optional_rslrt_vs_rpca.png",
             },
             {
-                "title": "Optional (3): TILT",
+                "title": "进阶模型验证：TILT",
                 "description": f"TILT affine/projective \u5206\u522b\u8fbe\u5230 {optional_metadata.get('tilt_affine_psnr', 0.0):.2f} dB \u548c {optional_metadata.get('tilt_projective_psnr', 0.0):.2f} dB\uff0c\u53d8\u6362\u77e9\u9635\u8bef\u5dee\u4ec5 0.003/0.006\u3002",
                 "image": "/results/optional_tilt_projective.png",
             },
